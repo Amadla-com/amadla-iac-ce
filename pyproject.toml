@@ -34,7 +34,7 @@ classifiers=[
 packages = [{include='amadlacli', from='.'}]
 
 [tool.poetry.scripts]
-amadlacli = 'amadlacli.cli:main'
+amadla = 'amadlacli.cli:cli'
 
 [tool.poetry.dependencies]
 python = "^3.12.0"

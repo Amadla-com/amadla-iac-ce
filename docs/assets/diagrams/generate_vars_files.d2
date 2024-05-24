@@ -1,0 +1,95 @@
+Amadla: Amadla CLI
+Amadla: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/sitenetsoft/amadla/amadla.png
+}
+
+GatherSecrets: Gather Secrets
+GatherSecrets.shape: rectangle
+
+AddSecretsToVars: Add Secrets To Vars
+AddSecretsToVars.shape: rectangle
+AddSecretsToVars
+
+PullAmadlaLockFile: Pull\n Amadla\n Lock File
+PullAmadlaLockFile.shape: page
+
+GetAllTheModulesGitRepos: Get All\n The Modules\n Git Repos
+GetAllTheModulesGitRepos.shape: rectangle
+
+CheckIfModulesExists: Modules Exists?
+CheckIfModulesExists.shape: diamond
+
+CheckIfModulesAreUpToDate: Modules Are Up To Date?
+CheckIfModulesAreUpToDate.shape: diamond
+
+DownloadModules: Download\n Modules
+DownloadModules.shape: square
+
+LookupModulesVariablesTemplateFile: Lookup\n Modules\n variables\n template file
+LookupModulesVariablesTemplateFile.shape: page
+
+RaiseErrorIfModulesVariablesTemplateFileNotFound: Raise Error:\n If Modules\n variables\n template file\n not found
+RaiseErrorIfModulesVariablesTemplateFileNotFound.shape: rectangle
+RaiseErrorIfModulesVariablesTemplateFileNotFound {
+    style: {
+        fill: "#DF2D2D"
+        stroke: "#890B0B"
+    }
+}
+
+PopulateModulesVariablesTemplateFile: Populate\n Modules\n variables\n template file
+PopulateModulesVariablesTemplateFile.shape: rectangle
+
+RaiseErrorIfModulesVariablesTemplateFileIsNotValid: Raise Error:\n If Modules\n variables\n template file is\n not valid
+RaiseErrorIfModulesVariablesTemplateFileIsNotValid.shape: rectangle
+RaiseErrorIfModulesVariablesTemplateFileIsNotValid {
+    style: {
+        fill: "#DF2D2D"
+        stroke: "#890B0B"
+    }
+}
+
+LoopThroughModules: Loop Through\n Modules
+LoopThroughModules.shape: oval
+
+LookupModulesVariablesFile: Lookup\n Modules\n variables file
+LookupModulesVariablesFile.shape: page
+
+Terraform: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/terraform.png
+}
+
+Packer: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/packer.png
+}
+
+Ansible: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/ansible.png
+}
+
+Others: Others...
+Others.shape: page
+
+Amadla -> GatherSecrets
+GatherSecrets -> PullAmadlaLockFile
+PullAmadlaLockFile -> AddSecretsToVars
+AddSecretsToVars -> GetAllTheModulesGitRepos
+GetAllTheModulesGitRepos -> CheckIfModulesExists
+CheckIfModulesExists -> CheckIfModulesAreUpToDate: Yes
+CheckIfModulesAreUpToDate -> DownloadModules: No
+CheckIfModulesExists -> DownloadModules: No
+CheckIfModulesAreUpToDate -> LookupModulesVariablesTemplateFile: Yes
+DownloadModules -> LookupModulesVariablesTemplateFile
+LookupModulesVariablesTemplateFile -> RaiseErrorIfModulesVariablesTemplateFileNotFound: Not Found
+LookupModulesVariablesTemplateFile -> PopulateModulesVariablesTemplateFile: Found
+PopulateModulesVariablesTemplateFile -> LoopThroughModules
+LoopThroughModules -> LookupModulesVariablesFile
+LookupModulesVariablesFile -> Terraform
+LookupModulesVariablesFile -> Packer
+LookupModulesVariablesFile -> Ansible
+LookupModulesVariablesFile -> Others
+LookupModulesVariablesFile -> RaiseErrorIfModulesVariablesTemplateFileIsNotValid: Not Valid

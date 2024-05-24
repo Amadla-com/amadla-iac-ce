@@ -5,10 +5,14 @@ Amadla CLI
 Released under MIT License
 """
 
+import os
 import tomllib
 
+project_root = os.path.dirname(os.path.dirname(__file__))
+pyproject_path = os.path.join(project_root, "pyproject.toml")
+
 try:
-    with open("pyproject.toml", "rb") as f:
+    with open(pyproject_path, "rb") as f:
         try:
             project_data = tomllib.load(f)
         except tomllib.TOMLDecodeError as e:

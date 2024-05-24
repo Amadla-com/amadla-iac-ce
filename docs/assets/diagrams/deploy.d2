@@ -1,0 +1,108 @@
+Amadla: Amadla CLI
+Amadla: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/sitenetsoft/amadla/amadla.png
+}
+
+GenerateVariablesFiles: Generate Variables Files
+GenerateVariablesFiles.shape: rectangle
+
+LoopThroughClouds: Loop Through Clouds
+LoopThroughClouds.shape: oval
+
+LoopThroughInstances: Loop Through Instances
+LoopThroughInstances.shape: oval
+
+GetInstanceBuilderName: Get Instance Builder Name
+GetInstanceBuilderName.shape: parallelogram
+
+BuilderNameSource: This information\n is taken from the\n Amadla configuration files
+BuilderNameSource.shape: callout
+
+BuilderTemplateSource: It is an extension component that\n can be added to Amadla\n to support new builders
+BuilderTemplateSource.shape: callout
+
+RunBuilderExplanation: The builder template\n that was just populated\n is a Bash script\n that will be executed
+RunBuilderExplanation.shape: callout
+
+GetBuilderTemplate: Get Builder Template
+GetBuilderTemplate.shape: parallelogram
+
+PopulateBuilderTemplate: Populate Builder Template
+PopulateBuilderTemplate.shape: rectangle
+
+RunBuilder: Run Builder
+RunBuilder.shape: rectangle
+
+BuilderSelector: Select builder
+BuilderSelector.shape: diamond
+
+Terraform: ""
+Terraform: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/terraform.png
+}
+
+Packer: ""
+Packer: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/packer.png
+}
+
+Ansible: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/ansible.png
+}
+
+PackerThenAnsible: Ansible
+PackerThenAnsible: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/ansible.png
+}
+
+Puppet: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/puppet.png
+}
+
+Chef: ""
+Chef: {
+    shape: image
+    icon: https://raw.githubusercontent.com/SiteNetSoft/resources/master/images/onprem/iac/chef.png
+}
+
+BuilderOthers: Others...
+BuilderOthers.shape: stored_data
+
+RunBuilder: Run Builder
+RunBuilder.shape: rectangle
+
+Amadla -> GenerateVariablesFiles
+GenerateVariablesFiles -> LoopThroughClouds
+
+LoopThroughClouds -> LoopThroughInstances
+LoopThroughInstances -> GetInstanceBuilderName
+
+GetInstanceBuilderName -> BuilderSelector
+BuilderNameSource -- GetInstanceBuilderName
+
+BuilderSelector -> Terraform
+BuilderSelector -> Ansible
+BuilderSelector -> Puppet
+BuilderSelector -> Chef
+BuilderSelector -> BuilderOthers
+Terraform -> Packer: If present\n in the Terraform\n configuration
+Packer -> PackerThenAnsible: If present\n in the Packer\n configuration
+
+Terraform -> GetBuilderTemplate
+Packer -> GetBuilderTemplate
+PackerThenAnsible -> GetBuilderTemplate
+Ansible -> GetBuilderTemplate
+Puppet -> GetBuilderTemplate
+Chef -> GetBuilderTemplate
+BuilderOthers -> GetBuilderTemplate
+
+GetBuilderTemplate -> PopulateBuilderTemplate
+BuilderTemplateSource -- GetBuilderTemplate
+RunBuilderExplanation -- RunBuilder
+PopulateBuilderTemplate -> RunBuilder

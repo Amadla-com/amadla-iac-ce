@@ -1,0 +1,40 @@
+name: Deploy with Amadla CLI
+
+on:
+  workflow_call:
+    secrets:
+      GH_PAT:
+        description: GitHub Token with permissions 'repo' and 'read:org' to list GitHub repos
+        required: true
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+            uses: actions/checkout@v3
+
+        - name: Install Amadla CLI
+            uses: SiteNetSoft/GitHub-Actions/.github/workflows/install-amadla-cli.yml@develop
+
+        - name: Deploy
+            uses: SiteNetSoft/GitHub-Actions/.github/workflows/deploy.yml@develop
+            with:
+            logLevel: ${{ github.event.inputs.logLevel }}
+            environment: ${{ github.event.inputs.environment }}
+            ghPat: ${{ secrets.GH_PAT }}
+    ```

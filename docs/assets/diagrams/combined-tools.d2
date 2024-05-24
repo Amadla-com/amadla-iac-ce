@@ -1,0 +1,188 @@
+amadla-cli: {
+    grid-rows: 13
+
+    validateschema: {
+        grid-rows: 3
+        explanation: |md
+
+          # validateschema
+          - Validates a json or yaml file against a schema (https://json-schema.org/)
+          - The schemas can be found in a directory
+
+        |
+        doc: |md
+
+          # Parameters
+          - `--version` ou `-v`: The version of the schema
+          - `--schema` ou `-s`: The path to the schema
+          - `--schema-dir` ou `-d`: The path to the directory containing the schema
+          - `--file` ou `-f`: The path to the file to validate
+          - `--help` ou `-h`: Display the help message
+
+          ## Default
+          - `--version`: 1 (the version of the schema can be also extracted from the file name of the schema)
+          - `--schema-dir`: schemas
+
+        |
+        example: |bash
+             validateschema --schema configuration.v1.schema.json --file data.json
+             # or
+             validateschema -s configuration.v1.schema.json -f data.json
+             # or
+             validateschema -v 1 -s configuration.v1.schema.json -f data.yaml
+             # or
+             validateschema -v 1 -d schemas -f data.yaml
+             # or
+             validateschema data.yaml
+        |
+    }
+
+    pyproject_to_sphinx: {
+        grid-rows: 3
+        explanation: |md
+
+          # pyproject_to_sphinx
+          - Pulls data from pyproject.toml to populate the sphinx `conf.py`
+          - Following the `conf.py` being populated Sphinx can be used to generate documentation
+          - Used in the terminal it will print an json string containing the data that it would have written to the `conf.py`
+          - If no path to `pyproject.toml` is provided it will look for it in the current directory
+
+        |
+        example: |bash
+             pyproject_to_sphinx ./pyproject.toml
+             # or
+             pyproject_to_sphinx
+        |
+    }
+
+    pydictmerge: {
+        grid-rows: 3
+        explanation: |md
+
+          # pydictmerge
+          - Merges two dictionaries
+          - They are two ways to merge the dictionaries
+
+        |
+        example: |bash
+             pydictmerge --file1 ./file1.json --file2 ./file2.json --merge-type 1
+             # or
+             pydictmerge -f1 ./file1.json -f2 ./file2.json -m 1
+             # or
+             pydictmerge -f1 ./file1.json -f2 ./file2.json -m 2
+        |
+    }
+
+    secretmerge: {
+        grid-rows: 3
+        explanation: |md
+
+          # secretmerge
+          - Exports secrets from a json file to environment variables
+          - The secrets from different sources and KMS keys can be merged
+
+        |
+    }
+
+    envmerge: {
+        grid-rows: 3
+        explanation: |md
+
+          # envmerge
+          - Exports environment variables from a json file to environment variables
+
+        |
+    }
+
+    dryrun: {
+        grid-rows: 3
+        explanation: |md
+
+          # dryrun
+          - Runs a command without executing it
+
+        |
+    }
+
+    pygitmodule: {
+        grid-rows: 3
+        explanation: |md
+
+          # pygitmodule
+          - Creates a git module
+
+        |
+        example: |bash
+            pygitmodule --module-name module_name --remove
+            # or
+            pygitmodule -n module_name -r
+            # or
+            pygitmodule -n module_name -a
+            # or
+
+        |
+    }
+
+    amadladiagrams: {
+        grid-rows: 3
+        explanation: |md
+
+          # amadladiagrams
+          - Converts a d file to an amadla fileamadladiagrams
+          - Will convert the configuration files and some module content into d2lang files
+          - To easily generate diagrams of your setup
+          - An image is worth a thousand words!
+
+        |
+        example: |bash
+            pyd2amadla --file ./file.d --output ./output.d2
+            # or
+            pyd2amadla -f ./file.d -o ./output.d2
+        |
+    }
+
+    amadlaconfig: {
+        grid-rows: 3
+        explanation: |md
+
+          # amadlaconfig
+          - Creates an amadla config file
+
+        |
+    }
+
+    pylockfilehelper: {
+        grid-rows: 3
+        explanation: |md
+
+          # pylockfilehelper
+          - Creates a lock file
+
+        |
+        example: |bash
+            pylockfilehelper --file ./file.json --lock-file ./lock.json
+            # or
+            pylockfilehelper -f ./file.json -l ./lock.json
+        |
+    }
+
+    pyclickmerge: {
+        grid-rows: 3
+        explanation: |md
+
+          # pyclickmerge
+          - Merges two click commands
+
+        |
+    }
+
+    pyproject_to_app: {
+        grid-rows: 3
+        explanation: |md
+
+          # pyproject_to_app
+          - Pulls data from pyproject.toml to populate the app class
+
+        |
+    }
+}
