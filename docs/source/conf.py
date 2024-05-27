@@ -2,7 +2,8 @@
 
 # -- Project information
 
-import toml
+import os
+import tomllib
 import subprocess
 
 
@@ -29,9 +30,12 @@ def get_short_version(long_version: str):
         return long_version
 
 
-project_data = toml.load("../pyproject.toml")
-metadata = project_data["tool"]["poetry"]
+project_root = os.path.dirname(os.path.dirname(__file__))
+pyproject_path = os.path.join(project_root, "../pyproject.toml")
 
+
+
+metadata = project_data["tool"]["poetry"]
 project = metadata["title"]
 copyright = extract_copyright('../LICENSE')
 author = ', '.join(get_contributors('docs/'))
