@@ -8,6 +8,11 @@ import subprocess
 
 
 def get_contributors(directory):
+    """
+
+    :param directory:
+    :return:
+    """
     git_command = ['git', 'log', '--pretty=format:%an', f'-- {directory}']
     result = subprocess.run(git_command, capture_output=True, text=True)
     contributors = set(result.stdout.splitlines())
@@ -15,6 +20,11 @@ def get_contributors(directory):
 
 
 def extract_copyright(filename):
+    """
+
+    :param filename:
+    :return:
+    """
     with open(filename) as f:
         for line in f:
             if "Copyright" in line:
@@ -23,6 +33,11 @@ def extract_copyright(filename):
 
 
 def get_short_version(long_version: str):
+    """
+
+    :param long_version:
+    :return:
+    """
     parts = long_version.split('.')
     if len(parts) >= 2:
         return '.'.join(parts[:2])

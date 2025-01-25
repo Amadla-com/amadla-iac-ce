@@ -1,8 +1,58 @@
 How It Works
 ==========================
 
+Before diving in the details of functionality and behavior lets define the elements that are used by Amadla.
+
+There are three types of files in Amadla:
+
+* Entity YAML configuration file (`amadla.yml` found at the root of the repository)
+* Schema, that defines the structure, the value types and documents the configuration components. Used for validation and documentation.
+* Templates that are in Jinja2 format (`.j2`)
+
+File types
+--------------
+
+Entity
+~~~~~~~~
+
+Entity files are in the YAML format.
+
+Very similar to Podman compose files they define the requirements or optional elements that are needed for an entity.
+It could be network settings like port numbers or a DB requirement.
+
+```yaml
+
+```
+
+Schema
+~~~~~~~~~~~
+
+To make sure that a entity configuration file does not turn into dumpster fire it is useful to define the specs for the configuration elements.
+The schemas use the (https://json-schema.org/) format to define the specs of an entity. This format also supports properties like description
+that are useful for documentation the parts of the configuration standard that is defined.
+
+Template
+~~~~~~~~~~~~~
+
+Templates are for generating configuration files. Using the popular Python template engine Jinja2.
+
+Flow
+-------------
+
+[create the .amadla directory if if does not exist] ->
+[Download entities repository with Git] ->
+[]
+
+FAQ
+======
+
 Amadla CLI is the utility application to render templates based on grouped configuration files (YAML) following schemas
 (https://json-schema.org/) to validate and document each property in the entity confiuration file.
+
+Why Python?
+---------------
+
+It could of easily been programmed with Golang or some other programming.
 
 Why are configuration files called entity?
 -------------------------------------------
